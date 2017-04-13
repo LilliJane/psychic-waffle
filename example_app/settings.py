@@ -1,3 +1,5 @@
+#!/usr/local/bin/python
+# -*- coding: utf-8 -*- 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
@@ -19,6 +21,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    'statues.apps.StatuesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,7 +51,7 @@ CHATTERBOT = {
         {
             'import_path': 'chatterbot.logic.SpecificResponseAdapter',
             'input_text': 'Who are you?',
-            'output_text': 'I am William the Silent but I am also known as William of Orange.  In 1544 I became Prince of Orange and thereby am the founder of the branch House of Orange –Nassau and the ancestor of the monarchy of the Netherlands.'
+            'output_text': 'I am William the Silent but I am also known as William of Orange.  In 1544 I became Prince of Orange and thereby am the founder of the branch House of Orange–Nassau and the ancestor of the monarchy of the Netherlands.'
         },
         {
             'import_path': 'chatterbot.logic.SpecificResponseAdapter',

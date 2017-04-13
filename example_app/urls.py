@@ -8,5 +8,6 @@ urlpatterns = [
     url(r'^$', ChatterBotAppView.as_view(), name='main'),
     url(r'^admin/', include(admin.site.urls), name='admin'),
     url(r'^api/chatterbot/', include(chatterbot_urls, namespace='chatterbot')),
+    url(r'^api/statues/', include('statues.urls'))
 ]
 

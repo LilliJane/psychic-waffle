@@ -1,0 +1,12 @@
+statues/templates/statues/index.html
+
+{% if latest_statue_list %}
+    <ul>
+    {% for statue in latest_statue_list %}
+        <li><a href="{% url 'statues:detail' statue.id %}">{{ statue.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No statues are available.</p>
+{% endif %}
+
