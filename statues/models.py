@@ -15,6 +15,8 @@ class Statue(models.Model):
     name = models.CharField(max_length=200)
     slug = models.SlugField(max_length=32, default='', blank=True)
     pub_date = models.DateTimeField('date published')
+    enable = models.BooleanField(default=False)
+    outdoor = models.BooleanField(default=True)
     description = models.CharField(max_length=500)
     latitute = models.FloatField(default=52.0715712)
     longitude = models.FloatField(default=4.169786)
@@ -29,4 +31,13 @@ class Statue(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super().save(*args, **kwargs)
+
+
+class Beacon(models.Model):
+    """ Beacon should be joined to a precised statue
+    """
+    statue = models.ForeignKey(Statue, on_delete=models.CASCADE)
+    uuid = models.CharField(max_length=60)
+    min_value = models.IntegerField()
+    max_value = models.IntegerField()
 

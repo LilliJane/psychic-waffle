@@ -1,18 +1,26 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.core import serializers
 from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 
 from .models import Statue
 
-def index(request):
-    latest_statue_list = Statue.objects.order_by('-pub_date')[:5]
-    return render(request, 'statues/index.html', {'latest_statue_list': latest_statue_list,})
+def get_statues(request):
+    if request.method == "POST":
+        try:
+            Statue.save(request.POST)
+            return JsonResponse(serializers.serialize('json', Statue.objects.order_by('-pub_date')[:1]))
+        except:
+            return JsonResponse(serializers.serialize('json', {'message': 'Error, couldn\'t add this statue'}))
+    latest_statue_list = serializers.serialize('json', Statue.objects.order_by('-pub_date'))
+    return JsonResponse({'latest_statue_list': latest_statue_list,})
 
-def detail(request, statue_id):
+def get_one_statue(request, statue_id):
     statue = get_object_or_404(Statue, pk=statue_id)
-    return render(request, 'statues/detail.html', {'statue': statue})
+    return JsonResponse(serializers.serialize('json', statue))
+
 
 def results(request, statue_id):
     response = "You're looking at the results of statue %s."
