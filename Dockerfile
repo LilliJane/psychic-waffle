@@ -3,9 +3,6 @@
 # FROM directive instructing base image to build upon
 FROM python:2-onbuild
 
-# Set the file maintainer (your name - the file's author)
-MAINTAINER Emeline Gaulard
-
 # COPY startup script into known file location in container
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 
