@@ -11,11 +11,11 @@ MAINTAINER Emeline Gaulard
 
 # Set env variables used in this Dockerfile (add a unique prefix, such as DJANGOAPP)
 # Local directory with project source
-ENV DJANGOAPP_SRC=example_app
+ENV DJANGOAPP_SRC=~/eps/psychic-waffle
 # Directory in container for all project files
 ENV DJANGOAPP_SRVHOME=/srv
 # Directory in container for project source files
-ENV DJANGOAPP_SRVPROJ=/srv/example_app
+ENV DJANGOAPP_SRVPROJ=/srv/psychic-waffle
 
 # Update the default application repository sources list
 RUN apt-get update && apt-get -y upgrade

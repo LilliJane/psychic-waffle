@@ -9,8 +9,8 @@ tail -n 0 -f /srv/logs/*.log &
 
 # Start Gunicorn processes
 echo Starting Gunicorn.
-exec gunicorn hello.wsgi:application \
-    --name hello_django \
+exec gunicorn example_app.wsgi:application \
+    --name example_app \
     --bind 0.0.0.0:8000 \
     --workers 3 \
     --log-level=info \
