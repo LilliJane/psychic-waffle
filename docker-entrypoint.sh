@@ -4,6 +4,6 @@ python manage.py migrate
 
 # Start Gunicorn processes
 echo Starting Gunicorn.
-exec gunicorn helloworld.wsgi:application \
+exec gunicorn example_app.wsgi:application \
     --bind 0.0.0.0:8000 \
     --workers 3
