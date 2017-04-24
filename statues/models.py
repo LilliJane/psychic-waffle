@@ -30,7 +30,7 @@ class Statue(models.Model):
     
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
-        super().save(*args, **kwargs)
+        super(Statue, self).save(*args, **kwargs)
 
 
 class Beacon(models.Model):
