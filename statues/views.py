@@ -15,11 +15,16 @@ def get_statues(request):
         except:
             return JsonResponse(serializers.serialize('json', {'message': 'Error, couldn\'t add this statue'}))
     latest_statue_list = serializers.serialize('json', Statue.objects.order_by('-pub_date'))
+    print latest_statue_list
     return JsonResponse({'latest_statue_list': latest_statue_list,})
 
 def get_one_statue(request, statue_id):
-    statue = get_object_or_404(Statue, pk=statue_id)
-    return JsonResponse(serializers.serialize('json', statue))
+    print statue_id
+    try:
+        statue = serializers.serialize('json', Statue.objects.get(id=statue_id))
+    except Statue.DoesNotExist:
+        raise Http404("No statue matches the given query.")
+    return JsonResponse({'statue': statue,})
 
 
 def results(request, statue_id):

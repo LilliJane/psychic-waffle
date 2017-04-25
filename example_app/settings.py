@@ -36,22 +36,23 @@ INSTALLED_APPS = (
 # ChatterBot settings
 
 CHATTERBOT = {
-    'name': 'Django ChatterBot Example',
-    'trainer': 'chatterbot.trainers.ChatterBotCorpusTrainer',
-    'training_data': [
-        'chatterbot.corpus.english.greetings'
-    ],
+    'name': 'Talking statues chatbot',
     'logic_adapters':[
+        {'import_path': 'chatterbot.logic.BestMatch'},
         {
-            'import_path': 'chatterbot.logic.MathematicalEvaluation'
-        },
-        {
-            'import_path': 'chatterbot.logic.BestMatch'
+            'import_path': 'chatterbot.logic.BestMatch',
+            'statement_comparison_function': 'chatterbot.comparisons.levenshtein_distance',
+            'response_selection_method': 'chatterbot.response_selection.get_first_response'
         },
         {
             'import_path': 'chatterbot.logic.SpecificResponseAdapter',
             'input_text': 'Who are you?',
-            'output_text': 'I am William the Silent but I am also known as William of Orange.  In 1544 I became Prince of Orange and thereby am the founder of the branch House of Orange–Nassau and the ancestor of the monarchy of the Netherlands.'
+            'output_text': 'I am William the Silent but I am also known as William of Orange.'
+        },
+        {
+            'import_path': 'chatterbot.logic.SpecificResponseAdapter',
+            'input_text': 'What have you done in your life?',
+            'output_text': 'In 1544 I became Prince of Orange and thereby am the founder of the branch House of Orange–Nassau and the ancestor of the monarchy of the Netherlands.'
         },
         {
             'import_path': 'chatterbot.logic.SpecificResponseAdapter',
@@ -65,20 +66,24 @@ CHATTERBOT = {
         },
         {
             'import_path': 'chatterbot.logic.SpecificResponseAdapter',
-            'input_text': 'Weren\'t you born in the Netherlands',
-            'output_text': 'As a child I was sent to the Netherlands to receive the required Roman Catholic education, first at the family’s estate in Breda and later in Brussels under the supervision of Mary of Habsburg.'
+            'input_text': 'Weren\'t you born in the Netherlands?',
+            'output_text': 'As a child I was sent to the Netherlands to receive the required Roman Catholic education, first at the family\'s estate in Breda and later in Brussels under the supervision of Mary of Habsburg.'
         },
         {
             'import_path': 'chatterbot.logic.SpecificResponseAdapter',
             'input_text': 'What are you famous for?',
-            'output_text': 'I was the main leader of the Dutch revolt against the Spanish Habsburgs that set off the Eighty Years’ War and I resulted in the formal independence of the United Provinces in 1581.'
+            'output_text': 'I was the main leader of the Dutch revolt against the Spanish Habsburgs that set off the Eighty Years\' War and I resulted in the formal independence of the United Provinces in 1581.'
         },
         {
             'import_path': 'chatterbot.logic.SpecificResponseAdapter',
             'input_text': 'Help me!',
             'output_text': 'Ok, here is a link: http://chatterbot.rtfd.org/en/'
         }
-    ]
+    ],
+    'trainer': 'chatterbot.trainers.ListTrainer',
+    'training_data': [
+        'chatterbot.corpus.english.greetings'
+    ],
 }
 
 MIDDLEWARE_CLASSES = (
