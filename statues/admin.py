@@ -7,3 +7,6 @@ from statues.models import Statue, Beacon
 
 admin.site.register(Statue)
 admin.site.register(Beacon)
+
+fields = ( 'image_tag', )
+readonly_fields = ('image_tag',)

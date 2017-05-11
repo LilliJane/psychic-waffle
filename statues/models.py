@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 import datetime
+import os
 
 from django.db import models
 from django.utils import timezone
@@ -20,9 +21,12 @@ class Statue(models.Model):
     description = models.CharField(max_length=500)
     latitude = models.FloatField(default=52.0715712)
     longitude = models.FloatField(default=4.169786)
-    pictures = models.ImageField(upload_to = 'pic_folder/', default = 'pic_folder/no-img.png')
-
+    pictures = models.ImageField(upload_to='/example_app/static/img/', default='example_app/static/img/no-img.png')
+    image_tag.short_description = 'Image'
     
+    def image_tag(self):
+        return mark_safe('<img src="/pic_folder/%s" width="150" height="150" />' % (self.pictures))
+
     def was_published_recently(self):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
     

@@ -153,3 +153,7 @@ STATICFILES_DIRS = (
         'static',
     ),
 )
+
+MEDIA_ROOT = '/pic_folder/'
+MEDIA_URL = '/pic_folder/'
+
