@@ -22,7 +22,7 @@ class Statue(models.Model):
     latitude = models.FloatField(default=52.0715712)
     longitude = models.FloatField(default=4.169786)
     pictures = models.ImageField(upload_to='/example_app/static/img/', default='example_app/static/img/no-img.png')
-    image_tag.short_description = 'Image'
+    pictures.short_description = 'Image'
     
     def image_tag(self):
         return mark_safe('<img src="/pic_folder/%s" width="150" height="150" />' % (self.pictures))
