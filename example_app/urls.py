@@ -9,7 +9,8 @@ urlpatterns = [
     url(r'^$', ChatterBotAppView.as_view(), name='main'),
     url(r'^admin/', include(admin.site.urls), name='admin'),
     url(r'^api/chatterbot/', include(chatterbot_urls, namespace='chatterbot')),
-    url(r'^api/statues/', include('statues.urls'))
+    url(r'^statues/', include('statues.urls')),
+    url(r'^beacons/', include('statues.beacons_urls'))
 ]
 
 urlpatterns += staticfiles_urlpatterns()
