@@ -21,7 +21,7 @@ class Statue(models.Model):
     description = models.CharField(max_length=500)
     latitude = models.FloatField(default=52.0715712)
     longitude = models.FloatField(default=4.169786)
-    pictures = models.ImageField(upload_to='/example_app/static/img/', default='example_app/static/img/no-img.png')
+    pictures = models.ImageField(upload_to='example_app/static/img', default='example_app/static/img/no-img.png')
     pictures.short_description = 'Image'
     
     def image_tag(self):
@@ -42,10 +42,14 @@ class Beacon(models.Model):
     uuid = models.CharField(max_length=60)
     min_value = models.IntegerField()
     max_value = models.IntegerField()
-    
+    pub_date = models.DateTimeField('date published')
+
     def __str__(self):
         return self.uuid
 
+    def was_published_recently(self):
+        return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+    
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(Beacon, self).save(*args, **kwargs)

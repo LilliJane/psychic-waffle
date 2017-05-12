@@ -15,7 +15,7 @@ SECRET_KEY = 'fsch+6!=q+@ol&%0x!nwdl@48^ixbd4clx5f1i!5n^66y+pmn*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [u'talkingstatues.xyz', u'localhost']
+ALLOWED_HOSTS = [u'talkingstatues.xyz', u'localhost', u'api.talkingstatues.xyz']
 
 
 # Application definition
@@ -37,52 +37,14 @@ INSTALLED_APPS = (
 
 CHATTERBOT = {
     'name': 'Talking statues chatbot',
-    'logic_adapters':[
-        {'import_path': 'chatterbot.logic.BestMatch'},
-        {
-            'import_path': 'chatterbot.logic.BestMatch',
-            'statement_comparison_function': 'chatterbot.comparisons.levenshtein_distance',
-            'response_selection_method': 'chatterbot.response_selection.get_first_response'
-        },
-        {
-            'import_path': 'chatterbot.logic.SpecificResponseAdapter',
-            'input_text': 'Who are you?',
-            'output_text': 'I am William the Silent but I am also known as William of Orange.'
-        },
-        {
-            'import_path': 'chatterbot.logic.SpecificResponseAdapter',
-            'input_text': 'What have you done in your life?',
-            'output_text': 'In 1544 I became Prince of Orange and thereby am the founder of the branch House of Orange–Nassau and the ancestor of the monarchy of the Netherlands.'
-        },
-        {
-            'import_path': 'chatterbot.logic.SpecificResponseAdapter',
-            'input_text': 'When did you live William?',
-            'output_text': 'I was born in 1533 and died at age of 51.'
-        },
-        {
-            'import_path': 'chatterbot.logic.SpecificResponseAdapter',
-            'input_text': 'William, where did you live?',
-            'output_text': 'I was born at Dillenburg castle, in the Holy Roman Empire.'
-        },
-        {
-            'import_path': 'chatterbot.logic.SpecificResponseAdapter',
-            'input_text': 'Weren\'t you born in the Netherlands?',
-            'output_text': 'As a child I was sent to the Netherlands to receive the required Roman Catholic education, first at the family\'s estate in Breda and later in Brussels under the supervision of Mary of Habsburg.'
-        },
-        {
-            'import_path': 'chatterbot.logic.SpecificResponseAdapter',
-            'input_text': 'What are you famous for?',
-            'output_text': 'I was the main leader of the Dutch revolt against the Spanish Habsburgs that set off the Eighty Years\' War and I resulted in the formal independence of the United Provinces in 1581.'
-        },
-        {
-            'import_path': 'chatterbot.logic.SpecificResponseAdapter',
-            'input_text': 'Help me!',
-            'output_text': 'Ok, here is a link: http://chatterbot.rtfd.org/en/'
-        }
+    'logic_adapters': [
+        'chatterbot.logic.MathematicalEvaluation',
+        'chatterbot.logic.TimeLogicAdapter',
+        'chatterbot.logic.BestMatch'
     ],
-    'trainer': 'chatterbot.trainers.ListTrainer',
+    'trainer': 'chatterbot.trainers.ChatterBotCorpusTrainer',    #'trainer': 'chatterbot.trainers.ListTrainer',
     'training_data': [
-        'chatterbot.corpus.english.greetings'
+        'chatterbot.corpus.english'
     ],
 }
 
@@ -154,6 +116,6 @@ STATICFILES_DIRS = (
     ),
 )
 
-MEDIA_ROOT = '/pic_folder/'
+MEDIA_ROOT = ''
 MEDIA_URL = '/pic_folder/'
 
