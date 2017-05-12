@@ -39,6 +39,7 @@ class Beacon(models.Model):
     """ Beacon should be joined to a precised statue
     """
     statue = models.ForeignKey(Statue, on_delete=models.CASCADE)
+    slug = models.SlugField(max_length=32, default='', blank=True)
     uuid = models.CharField(max_length=60)
     min_value = models.IntegerField()
     max_value = models.IntegerField()
@@ -51,7 +52,7 @@ class Beacon(models.Model):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
     
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
+        self.slug = slugify(self.uuid)
         super(Beacon, self).save(*args, **kwargs)
 
 
