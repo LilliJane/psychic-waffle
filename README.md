@@ -29,7 +29,21 @@ It is important to precise the port, especially from the server, because it's th
 
 ### API documentation
 
-TODO
+To use the chatterbot API, you need to send:
+
+`curl -H "Accept: application/json" \
+     -H "Content-Type: application/json" \
+     -X POST 'api.talkingstatues.xyz/api/chatterbot/' \
+     -d "{'text': 'YOUR MESSAGE'}"`
+
+To receive:
+
+`{
+  "text": "Is it true that you are a computer program",
+  "created_at": "2017-05-11T10:11:27.085Z",
+  "extra_data": {},
+  "in_response_to": []
+}`
 
 Further documentation on getting set up with Django and ChatterBot can be
 found in the `ChatterBot documentation`.
