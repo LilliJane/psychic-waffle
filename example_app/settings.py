@@ -52,6 +52,7 @@ CHATTERBOT = {
         'chatterbot.corpus.english.history',
         'chatterbot.corpus.english.humor',
         'chatterbot.corpus.english.emotion'
+        # './statues.corpus.json'
     ],
 }
 
