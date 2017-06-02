@@ -37,10 +37,12 @@ INSTALLED_APPS = (
 
 CHATTERBOT = {
     'name': 'Talking statues chatbot',
+    'django_app_name': 'django_chatterbot',
+    'filters': 'chatterbot.filters.RepetitiveResponseFilter',
     'storage_adapter': 'chatterbot.storage.DjangoStorageAdapter',
     'database': './db.sqlite3',
     'logic_adapters': [
-        'chatterbot.logic.BestMatch'
+        'chatterbot.logic.BestMatch',
     ],
     'filters': [
         'chatterbot.filters.RepetitiveResponseFilter'
@@ -51,8 +53,8 @@ CHATTERBOT = {
         'chatterbot.corpus.english.conversations',
         'chatterbot.corpus.english.history',
         'chatterbot.corpus.english.humor',
-        'chatterbot.corpus.english.emotion'
-        # './statues.corpus.json'
+        'chatterbot.corpus.english.emotion',
+        './statues.corpus.json',
     ],
 }
 
