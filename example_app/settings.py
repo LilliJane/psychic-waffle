@@ -54,7 +54,11 @@ CHATTERBOT = {
         'chatterbot.corpus.english.history',
         'chatterbot.corpus.english.humor',
         'chatterbot.corpus.english.emotion',
-        './statues.corpus.json',
+        './johandewitt.corpus.json',
+        './johanvanoldenbarneveldt.corpus.json',
+        './williamIIofthenetherlands.corpus.json',
+        './williamoforange.corpus.json',
+        './karel.corpus.json',
     ],
 }
 
