@@ -131,5 +131,5 @@ STATICFILES_DIRS = (
 )
 
 MEDIA_ROOT = ''
-MEDIA_URL = '/pic_folder/'
+MEDIA_URL = '/'
 
