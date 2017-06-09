@@ -4,12 +4,7 @@ from django.conf.urls import url
 from django.conf import settings
 from django.conf.urls.static import static
 
-
 from . import views
-
-print settings.MEDIA_ROOT
-print settings.MEDIA_URL
-print static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 app_name = "statues"
 urlpatterns = [

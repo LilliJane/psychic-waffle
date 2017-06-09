@@ -16,12 +16,10 @@ def get_statues(request):
         except:
             return JsonResponse(serializers.serialize('json', {'message': 'Error, couldn\'t add this statue'}))
     latest_statue_list = serializers.serialize('json', Statue.objects.order_by('-pub_date'))
-    print latest_statue_list
     return JsonResponse({'latest_statue_list': latest_statue_list,})
 
 
 def get_one_statue(request, statue_id):
-    print statue_id
     try:
         statue = serializers.serialize('json', Statue.objects.get(id=statue_id))
     except Statue.DoesNotExist:
@@ -37,16 +35,15 @@ def get_beacons(request):
         except:
             return JsonResponse(serializers.serialize('json', {'message': 'Error, couldn\'t add this beacon'}))
     latest_beacons_list = serializers.serialize('json', Beacon.objects.order_by('-pub_date'))
-    print latest_beacons_list
     return JsonResponse({'latest_beacon_list': latest_beacons_list,})
 
 
-def get_one_beacon(request, beacon_uuid):
-    print beacon_uuid
+def get_one_beacon(request, beacon_slug):
     try:
-        beacon = serializers.serialize('json', Beacon.objects.get(uuid=beacon_uuid))
-    except Beacon.DoesNotExist:
+        beacon = serializers.serialize('json', Beacon.objects.get(slug=beacon_slug))
+    except:
         raise Http404("No beacon matches the given query.")
+    print beacon
     return JsonResponse({'beacon': beacon,})
 
 

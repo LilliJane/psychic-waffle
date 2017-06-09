@@ -42,6 +42,7 @@ class Beacon(models.Model):
     /api/beaconDetected/<statue_id>
     """
     statue = models.ForeignKey(Statue, on_delete=models.CASCADE)
+    slug_statue = models.SlugField(max_length=32, default='', blank=True)
     slug = models.SlugField(max_length=32, default='', blank=True)
     uuid = models.CharField(max_length=60)
     min_value = models.IntegerField()
