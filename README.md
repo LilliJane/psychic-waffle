@@ -11,7 +11,13 @@ app using Django_ and ChatterBot_.
 
 #### Local
 
-Apply migrations by running `python manage.py migrate`
+Apply migrations by running 
+    `python manage.py migrate`
+
+Train the bot by running `python manage.py train`
+
+If you need to get access to the admin panel, you need to run `python manage.py createsuperuser`. This will create an admin in the db, and with those new credentials you will be able to log in.
+
 Start the Django app by running `python manage.py runserver 0.0.0.0:8000`
 
 #### With Docker
@@ -25,7 +31,13 @@ Before running the container, you need to build the image:
 When it's built, you can run it with this command:
 
     docker run -d -p 127.0.0.1:8000:8000 --name eps lillijane/django_eps
-It is important to precise the port, especially from the server, because it's the only way to link it with the nginx configuration.
+It is important to precise the port, especially from the server, because it's the only way to link it with the nginx configuration. Keep in mind that you need to be careful about the data persistance. If you want to keep your data, you can run (by replacing `/home/` by your path to your directory):
+
+    docker run -d -p 127.0.0.1:8000:8000 --name eps   \
+        -v /home/db.sqlite3:/usr/src/app/db.sqlite3   \
+        -v /home/pic_folder/:/usr/src/app/pic_folder/ \
+        -v /home/eps_app/static/img/:/usr/src/app/eps_app/static/img/
+        lillijane/django_eps
 
 ### API documentation
 
