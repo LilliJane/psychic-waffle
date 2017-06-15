@@ -30,7 +30,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'chatterbot.ext.django_chatterbot',
-    'example_app',
+    'eps_app',
 )
 
 # ChatterBot settings
@@ -72,7 +72,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
 )
 
-ROOT_URLCONF = 'example_app.urls'
+ROOT_URLCONF = 'eps_app.urls'
 
 TEMPLATES = [
     {
@@ -90,7 +90,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'example_app.wsgi.application'
+WSGI_APPLICATION = 'eps_app.wsgi.application'
 
 
 # Database
